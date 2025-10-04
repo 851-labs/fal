@@ -101,6 +101,30 @@ Requests that are still in the queue can be cancelled:
 request.cancel! # => { "status" => "CANCELLATION_REQUESTED" }
 ```
 
+### Webhooks
+
+fal can POST a webhook to your server when a request completes. Use `Fal::WebhookRequest` to parse the incoming payload.
+
+```ruby
+# rails controller example
+class FalWebhooksController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  def create
+    webhook = Fal::WebhookRequest.from_rack_request(request)
+
+    if webhook.success?
+      # webhook.response contains the model-specific payload
+      # webhook.logs, webhook.metrics may also be present
+      head :ok
+    else
+      Rails.logger.error("fal webhook error: #{webhook.error} detail=#{webhook.error_detail}")
+      head :ok
+    end
+  end
+end
+```
+
 ### Error handling
 
 HTTP and API errors raise typed exceptions:

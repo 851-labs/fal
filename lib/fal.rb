@@ -74,9 +74,27 @@ module Fal
       configuration = self.configuration || Configuration.new
       @client ||= Fal::Client.new(configuration)
     end
+
+    # Deep symbolize keys of a Hash or Array.
+    # @param obj [Hash, Array]
+    # @return [Hash, Array]
+    def deep_symbolize_keys(obj)
+      case obj
+      when Hash
+        obj.each_with_object({}) do |(k, v), result|
+          key = k.is_a?(String) ? k.to_sym : k
+          result[key] = deep_symbolize_keys(v)
+        end
+      when Array
+        obj.map { |e| deep_symbolize_keys(e) }
+      else
+        obj
+      end
+    end
   end
 end
 
 require_relative "fal/client"
 require_relative "fal/request"
 require_relative "fal/stream"
+require_relative "fal/webhook_request"

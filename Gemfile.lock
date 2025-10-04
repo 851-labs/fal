@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fal (0.0.1)
+    fal (0.0.3)
       faraday (>= 1)
 
 GEM
