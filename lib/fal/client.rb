@@ -22,6 +22,25 @@ module Fal
       parse_json(response.body)
     end
 
+    # Perform a POST against the platform API base (api.fal.ai/v1)
+    # @param path [String]
+    # @param payload [Hash]
+    # @param headers [Hash]
+    # @return [Hash, nil]
+    def post_api(path, payload = {}, headers: {})
+      response = connection.post(build_api_url(path)) do |request|
+        request.headers["Authorization"] = "Key #{@configuration.api_key}" if @configuration.api_key
+        request.headers["Content-Type"] = "application/json"
+        request.headers["Accept"] = "application/json"
+        request.headers.merge!(headers)
+        request.body = payload.compact.to_json
+      end
+
+      handle_error(response) unless response.success?
+
+      parse_json(response.body)
+    end
+
     # Perform a POST to the streaming (sync) base with SSE/text-event-stream handling.
     # The provided on_data Proc will be used to receive chunked data.
     # @param path [String]
@@ -42,6 +61,26 @@ module Fal
 
     def get(path, query: nil, headers: {})
       url = build_url(path)
+      url = "#{url}?#{URI.encode_www_form(query)}" if query && !query.empty?
+
+      response = connection.get(url) do |request|
+        request.headers["Authorization"] = "Key #{@configuration.api_key}" if @configuration.api_key
+        request.headers["Accept"] = "application/json"
+        request.headers.merge!(headers)
+      end
+
+      handle_error(response) unless response.success?
+
+      parse_json(response.body)
+    end
+
+    # Perform a GET against the platform API base (api.fal.ai/v1)
+    # @param path [String]
+    # @param query [Hash, nil]
+    # @param headers [Hash]
+    # @return [Hash, nil]
+    def get_api(path, query: nil, headers: {})
+      url = build_api_url(path)
       url = "#{url}?#{URI.encode_www_form(query)}" if query && !query.empty?
 
       response = connection.get(url) do |request|
@@ -95,6 +134,10 @@ module Fal
 
     def build_sync_url(path)
       "#{@configuration.sync_base}#{path}"
+    end
+
+    def build_api_url(path)
+      "#{@configuration.api_base}#{path}"
     end
 
     def connection

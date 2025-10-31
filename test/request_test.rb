@@ -41,43 +41,43 @@ class RequestTest < Minitest::Test
   end
 
   def test_submit_and_status_and_cancel
-    model_id = "fal-ai/fast-sdxl"
+    endpoint_id = "fal-ai/fast-sdxl"
     request_id = "req-123"
 
     stubs = {
-      [:post, "/#{model_id}"] => {
+      [:post, "/#{endpoint_id}"] => {
         "request_id" => request_id,
-        "response_url" => "https://queue.fal.run/#{model_id}/requests/#{request_id}",
-        "status_url" => "https://queue.fal.run/#{model_id}/requests/#{request_id}/status",
-        "cancel_url" => "https://queue.fal.run/#{model_id}/requests/#{request_id}/cancel"
+        "response_url" => "https://queue.fal.run/#{endpoint_id}/requests/#{request_id}",
+        "status_url" => "https://queue.fal.run/#{endpoint_id}/requests/#{request_id}/status",
+        "cancel_url" => "https://queue.fal.run/#{endpoint_id}/requests/#{request_id}/cancel"
       },
-      [:get, "/#{model_id}/requests/#{request_id}/status"] => {
+      [:get, "/#{endpoint_id}/requests/#{request_id}/status"] => {
         "status" => "IN_QUEUE",
         "queue_position" => 0,
-        "response_url" => "https://queue.fal.run/#{model_id}/requests/#{request_id}"
+        "response_url" => "https://queue.fal.run/#{endpoint_id}/requests/#{request_id}"
       },
-      [:get, "/#{model_id}/requests/#{request_id}/status", { logs: 1 }] => {
+      [:get, "/#{endpoint_id}/requests/#{request_id}/status", { logs: 1 }] => {
         "status" => "IN_PROGRESS",
         "logs" => [{ "message" => "processing" }],
-        "response_url" => "https://queue.fal.run/#{model_id}/requests/#{request_id}"
+        "response_url" => "https://queue.fal.run/#{endpoint_id}/requests/#{request_id}"
       },
-      [:put, "/#{model_id}/requests/#{request_id}/cancel"] => { "status" => "CANCELLATION_REQUESTED" }
+      [:put, "/#{endpoint_id}/requests/#{request_id}/cancel"] => { "status" => "CANCELLATION_REQUESTED" }
     }
 
     client = FakeClient.new(stubs: stubs)
 
-    req = Fal::Request.create!(model_id: model_id, input: { prompt: "a cat" }, client: client)
-    assert_equal request_id, req.id
-    assert req.in_queue?
+    request = Fal::Request.create!(endpoint_id: endpoint_id, input: { prompt: "a cat" }, client: client)
+    assert_equal request_id, request.id
+    assert request.in_queue?
 
-    req.reload!
-    assert req.in_queue?
+    request.reload!
+    assert request.in_queue?
 
-    req.reload!(logs: true)
-    assert req.in_progress?
-    refute_nil req.logs
+    request.reload!(logs: true)
+    assert request.in_progress?
+    refute_nil request.logs
 
-    resp = req.cancel!
-    assert_equal({ "status" => "CANCELLATION_REQUESTED" }, resp)
+    response = request.cancel!
+    assert_equal({ "status" => "CANCELLATION_REQUESTED" }, response)
   end
 end

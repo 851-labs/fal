@@ -1,0 +1,637 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:19:10 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '415'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "207ea863-5bd8-4f93-aa17-16c87b528b8d",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/cancel",
+        "logs": null, "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:19:10 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/status?logs=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:19:10 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '413'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "207ea863-5bd8-4f93-aa17-16c87b528b8d",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/cancel",
+        "logs": [], "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:19:10 GMT
+- request:
+    method: put
+    uri: https://queue.fal.run/fal-ai/flux/requests/207ea863-5bd8-4f93-aa17-16c87b528b8d/cancel
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:19:10 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '36'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "CANCELLATION_REQUESTED"}'
+  recorded_at: Fri, 31 Oct 2025 17:19:10 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:20:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '415'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "41410e34-395a-46b6-8657-905e8404de40",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/cancel",
+        "logs": null, "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:20:55 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/status?logs=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:20:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '413'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "41410e34-395a-46b6-8657-905e8404de40",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/cancel",
+        "logs": [], "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:20:55 GMT
+- request:
+    method: put
+    uri: https://queue.fal.run/fal-ai/flux/requests/41410e34-395a-46b6-8657-905e8404de40/cancel
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:20:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '36'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "CANCELLATION_REQUESTED"}'
+  recorded_at: Fri, 31 Oct 2025 17:20:55 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:23:15 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '415'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "114d526f-7b67-4482-9063-1437652b8e38",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/cancel",
+        "logs": null, "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:23:15 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/status?logs=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:23:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '413'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "114d526f-7b67-4482-9063-1437652b8e38",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/cancel",
+        "logs": [], "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:23:16 GMT
+- request:
+    method: put
+    uri: https://queue.fal.run/fal-ai/flux/requests/114d526f-7b67-4482-9063-1437652b8e38/cancel
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:23:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '36'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "CANCELLATION_REQUESTED"}'
+  recorded_at: Fri, 31 Oct 2025 17:23:16 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:27:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '415'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "8da6fea9-20a1-4e65-85ae-218151598143",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/cancel",
+        "logs": null, "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:27:05 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/status?logs=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:27:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '413'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "8da6fea9-20a1-4e65-85ae-218151598143",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/cancel",
+        "logs": [], "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:27:05 GMT
+- request:
+    method: put
+    uri: https://queue.fal.run/fal-ai/flux/requests/8da6fea9-20a1-4e65-85ae-218151598143/cancel
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:27:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '36'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "CANCELLATION_REQUESTED"}'
+  recorded_at: Fri, 31 Oct 2025 17:27:06 GMT
+- request:
+    method: post
+    uri: https://queue.fal.run/fal-ai/flux/dev
+    body:
+      encoding: UTF-8
+      string: '{"prompt":"a cat"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:19 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '433'
+      Connection:
+      - keep-alive
+      X-Fal-Request-Id:
+      - 59899b99-07ca-4177-b21c-037a18d1e441
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_QUEUE", "request_id": "59899b99-07ca-4177-b21c-037a18d1e441",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/cancel",
+        "logs": null, "metrics": {}, "queue_position": 0}'
+  recorded_at: Fri, 31 Oct 2025 17:37:19 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:19 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '415'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "59899b99-07ca-4177-b21c-037a18d1e441",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/cancel",
+        "logs": null, "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:37:19 GMT
+- request:
+    method: get
+    uri: https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/status?logs=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:20 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '413'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_PROGRESS", "request_id": "59899b99-07ca-4177-b21c-037a18d1e441",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/cancel",
+        "logs": [], "metrics": {}}'
+  recorded_at: Fri, 31 Oct 2025 17:37:20 GMT
+- request:
+    method: put
+    uri: https://queue.fal.run/fal-ai/flux/requests/59899b99-07ca-4177-b21c-037a18d1e441/cancel
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:20 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '36'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "CANCELLATION_REQUESTED"}'
+  recorded_at: Fri, 31 Oct 2025 17:37:20 GMT
+recorded_with: VCR 6.3.1

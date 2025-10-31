@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fal.ai/v1/models/pricing?endpoint_id=fal-ai/flux/dev
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:25 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=0, must-revalidate
+      Vary:
+      - accept-encoding
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=63072000
+      X-Vercel-Cache:
+      - BYPASS
+      X-Vercel-Id:
+      - iad1::iad1::xwsd6-1761932245301-d7843e4d0dfe
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - 9974eb94fce71385-ATL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"prices":[{"endpoint_id":"fal-ai/flux/dev","unit_price":0.025,"unit":"megapixels","currency":"USD"}],"next_cursor":null,"has_more":false}'
+  recorded_at: Fri, 31 Oct 2025 17:37:25 GMT
+recorded_with: VCR 6.3.1

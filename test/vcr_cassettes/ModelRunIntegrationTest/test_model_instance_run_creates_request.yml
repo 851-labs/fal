@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fal.ai/v1/models?endpoint_id=fal-ai/flux/dev
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=0, must-revalidate
+      Vary:
+      - accept-encoding
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=63072000
+      X-Vercel-Cache:
+      - BYPASS
+      X-Vercel-Id:
+      - iad1::iad1::lp6gl-1761932238978-c641ea8aa068
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - 9974eb6d3f11a141-ATL
+    body:
+      encoding: ASCII-8BIT
+      string: '{"models":[{"endpoint_id":"fal-ai/flux/dev","metadata":{"display_name":"FLUX.1
+        [dev]","category":"text-to-image","description":"FLUX.1 [dev] is a 12 billion
+        parameter flow transformer that generates high-quality images from text. It
+        is suitable for personal and commercial use.","status":"active","tags":[],"updated_at":"2025-08-28T01:08:16.920Z","is_favorited":false,"thumbnail_url":"https://storage.googleapis.com/fal_cdn/fal/Upscale-1.jpeg","model_url":"https://fal.run/fal-ai/flux/dev","license_type":"commercial","date":"2025-04-01T18:10:42.284Z","group":{"key":"flux-1","label":"Text
+        to Image [dev]"},"highlighted":true,"kind":"inference","stream_url":"https://fal.run/fal-ai/flux/dev/stream","pinned":false}}],"next_cursor":null,"has_more":false}'
+  recorded_at: Fri, 31 Oct 2025 17:37:19 GMT
+- request:
+    method: post
+    uri: https://queue.fal.run/fal-ai/flux/dev
+    body:
+      encoding: UTF-8
+      string: '{"prompt":"instance run"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:37:19 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '433'
+      Connection:
+      - keep-alive
+      X-Fal-Request-Id:
+      - 3509a73b-4c04-43bd-9466-8b17d75c3fc0
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_QUEUE", "request_id": "3509a73b-4c04-43bd-9466-8b17d75c3fc0",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/3509a73b-4c04-43bd-9466-8b17d75c3fc0",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/3509a73b-4c04-43bd-9466-8b17d75c3fc0/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/3509a73b-4c04-43bd-9466-8b17d75c3fc0/cancel",
+        "logs": null, "metrics": {}, "queue_position": 0}'
+  recorded_at: Fri, 31 Oct 2025 17:37:19 GMT
+recorded_with: VCR 6.3.1

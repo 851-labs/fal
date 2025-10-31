@@ -27,57 +27,58 @@ module Fal
     # @return [Hash, nil] Response payload when status is COMPLETED
     attr_reader :response
     # @return [String] The model identifier used when creating this request
-    attr_reader :model_id
+    attr_reader :endpoint_id
 
     # @param attributes [Hash] Raw attributes from fal Queue API
-    # @param model_id [String] Model ID in "namespace/name" format
+    # @param endpoint_id [String] Model ID in "namespace/name" format
     # @param client [Fal::Client] HTTP client to use for subsequent calls
-    def initialize(attributes, model_id:, client: Fal.client)
+    def initialize(attributes, endpoint_id:, client: Fal.client)
       @client = client
-      @model_id = model_id
+      @endpoint_id = endpoint_id
       reset_attributes(attributes)
     end
 
     class << self
       # Create a new queued request for a model.
-      # Corresponds to POST https://queue.fal.run/{model_id}
+      # Corresponds to POST https://queue.fal.run/{endpoint_id}
       # Optionally appends fal_webhook query param per docs.
-      # @param model_id [String]
+      # @param endpoint_id [String]
       # @param input [Hash]
       # @param webhook_url [String, nil]
       # @param client [Fal::Client]
       # @return [Fal::Request]
-      def create!(model_id:, input:, webhook_url: nil, client: Fal.client)
-        path = "/#{model_id}"
+      def create!(endpoint_id:, input:, webhook_url: nil, client: Fal.client)
+        path = "/#{endpoint_id}"
         body = input || {}
         path = "#{path}?fal_webhook=#{CGI.escape(webhook_url)}" if webhook_url
-        attrs = client.post(path, body)
-        new(attrs, model_id: model_id, client: client)
+        attributes = client.post(path, body)
+        new(attributes, endpoint_id: endpoint_id, client: client)
       end
 
       # Find the current status for a given request.
-      # Corresponds to GET https://queue.fal.run/{model_id}/requests/{request_id}/status
+      # Corresponds to GET https://queue.fal.run/{endpoint_id}/requests/{request_id}/status
       # @param id [String]
-      # @param model_id [String]
+      # @param endpoint_id [String]
       # @param logs [Boolean] include logs if true
       # @param client [Fal::Client]
       # @return [Fal::Request]
-      def find_by!(id:, model_id:, logs: false, client: Fal.client)
-        model_id_without_subpath = model_id.split("/").slice(0, 2).join("/")
-        attrs = client.get("/#{model_id_without_subpath}/requests/#{id}/status", query: (logs ? { logs: 1 } : nil))
-        new(attrs, model_id: model_id, client: client)
+      def find_by!(id:, endpoint_id:, logs: false, client: Fal.client)
+        endpoint_id_without_subpath = endpoint_id.split("/").slice(0, 2).join("/")
+        attributes = client.get("/#{endpoint_id_without_subpath}/requests/#{id}/status",
+                                query: (logs ? { logs: 1 } : nil))
+        new(attributes, endpoint_id: endpoint_id, client: client)
       end
 
       # Stream a synchronous request using SSE and yield response chunks as they arrive.
       # It returns a Fal::Request initialized with the last streamed data in the response field.
-      # @param model_id [String]
+      # @param endpoint_id [String]
       # @param input [Hash]
       # @param client [Fal::Client]
       # @yield [chunk] yields each parsed chunk Hash from the stream
       # @yieldparam chunk [Hash]
       # @return [Fal::Request]
-      def stream!(model_id:, input:, client: Fal.client, &block)
-        path = "/#{model_id}/stream"
+      def stream!(endpoint_id:, input:, client: Fal.client, &block)
+        path = "/#{endpoint_id}/stream"
         last_data = nil
 
         Stream.new(path: path, input: input, client: client).each do |event|
@@ -93,18 +94,18 @@ module Fal
                            else
                              last_data
                            end
-        attrs = {
+        attributes = {
           "request_id" => last_data && last_data["request_id"],
           "status" => last_data && last_data["status"],
           "response" => response_payload
         }.compact
-        new(attrs, model_id: model_id, client: client)
+        new(attributes, endpoint_id: endpoint_id, client: client)
       end
     end
 
     # @return [String] The model ID without the subpath
-    def model_id_without_subpath
-      @model_id.split("/").slice(0, 2).join("/")
+    def endpoint_id_without_subpath
+      @endpoint_id.split("/").slice(0, 2).join("/")
     end
 
     # Reload the current status from the Queue API.
@@ -112,11 +113,12 @@ module Fal
     # @return [Fal::Request]
     def reload!(logs: false)
       if @status == Status::IN_PROGRESS || @status == Status::IN_QUEUE
-        attrs = @client.get("/#{model_id_without_subpath}/requests/#{@id}/status", query: (logs ? { logs: 1 } : nil))
-        reset_attributes(attrs)
+        attributes = @client.get("/#{endpoint_id_without_subpath}/requests/#{@id}/status",
+                                 query: (logs ? { logs: 1 } : nil))
+        reset_attributes(attributes)
       end
 
-      @response = @client.get("/#{model_id_without_subpath}/requests/#{@id}") if @status == Status::COMPLETED
+      @response = @client.get("/#{endpoint_id_without_subpath}/requests/#{@id}") if @status == Status::COMPLETED
 
       self
     end
@@ -124,7 +126,7 @@ module Fal
     # Attempt to cancel the request if still in queue.
     # @return [Hash] cancellation response
     def cancel!
-      @client.put("/#{model_id_without_subpath}/requests/#{@id}/cancel")
+      @client.put("/#{endpoint_id_without_subpath}/requests/#{@id}/cancel")
     end
 
     # @return [Boolean]

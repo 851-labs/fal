@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://queue.fal.run/fal-ai/flux/dev
+    body:
+      encoding: UTF-8
+      string: '{"prompt":"class run"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Authorization:
+      - "<AUTHORIZATION>"
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 31 Oct 2025 17:26:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '433'
+      Connection:
+      - keep-alive
+      X-Fal-Request-Id:
+      - 586debe6-0389-4aef-8593-435924434673
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - noindex
+    body:
+      encoding: UTF-8
+      string: '{"status": "IN_QUEUE", "request_id": "586debe6-0389-4aef-8593-435924434673",
+        "response_url": "https://queue.fal.run/fal-ai/flux/requests/586debe6-0389-4aef-8593-435924434673",
+        "status_url": "https://queue.fal.run/fal-ai/flux/requests/586debe6-0389-4aef-8593-435924434673/status",
+        "cancel_url": "https://queue.fal.run/fal-ai/flux/requests/586debe6-0389-4aef-8593-435924434673/cancel",
+        "logs": null, "metrics": {}, "queue_position": 0}'
+  recorded_at: Fri, 31 Oct 2025 17:26:59 GMT
+recorded_with: VCR 6.3.1
