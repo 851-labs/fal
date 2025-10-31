@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "dotenv"
+
+Dotenv.load
+
+# Default to recording all interactions unless explicitly set
+ENV["VCR_RECORD"] ||= "all"
+
+args = ARGV.dup
+
+exec("bundle", "exec", "rake", "test", *args)

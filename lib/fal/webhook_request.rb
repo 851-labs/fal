@@ -46,11 +46,11 @@ module Fal
       end
 
       # Build from a Rack::Request.
-      # @param req [#body]
+      # @param request [#body]
       # @return [Fal::WebhookRequest]
-      def from_rack_request(req)
-        body = req.body.read
-        req.body.rewind if req.body.respond_to?(:rewind)
+      def from_rack_request(request)
+        body = request.body.read
+        request.body.rewind if request.body.respond_to?(:rewind)
         from_json(body)
       end
 

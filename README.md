@@ -21,19 +21,20 @@ Fal.configure do |config|
   config.api_key = "your-key" # Optional. Defaults to ENV["FAL_KEY"] if not set.
   config.queue_base = "https://queue.fal.run" # Optional (default: https://queue.fal.run)
   config.sync_base = "https://fal.run" # Optional (default: https://fal.run)
+  config.api_base = "https://api.fal.ai/v1" # Optional (default: https://api.fal.ai/v1)
   config.request_timeout = 120 # Optional (default: 120)
 end
 ```
 
 ### Create a queued request
 
-The Queue API is the recommended way to call models on fal. Provide a `model_id` in "namespace/name" format and an input payload.
+The Queue API is the recommended way to call models on fal. Provide a `endpoint_id` in "namespace/name" format and an input payload.
 
 ```ruby
-model_id = "fal-ai/fast-sdxl"
+endpoint_id = "fal-ai/fast-sdxl"
 
 request = Fal::Request.create!(
-  model_id: model_id,
+  endpoint_id: endpoint_id,
   input: { prompt: "a cat" }
 )
 
@@ -45,7 +46,7 @@ You can also specify a webhook URL to be notified when the request is finished.
 
 ```ruby
 request = Fal::Request.create!(
-  model_id: model_id,
+  endpoint_id: endpoint_id,
   input: { prompt: "a cat playing piano" },
   webhook_url: "https://example.com/fal/webhook"
 )
@@ -56,7 +57,7 @@ request = Fal::Request.create!(
 Fetch the current status by id:
 
 ```ruby
-status = Fal::Request.find_by!(id: request.id, model_id: model_id)
+status = Fal::Request.find_by!(id: request.id, endpoint_id: endpoint_id)
 status.in_queue?      # => true/false
 status.in_progress?   # => true/false
 status.completed?     # => true/false
@@ -138,7 +139,7 @@ Rescue them as needed:
 
 ```ruby
 begin
-  Fal::Request.create!(model_id: model_id, input: { prompt: "hi" })
+  Fal::Request.create!(endpoint_id: endpoint_id, input: { prompt: "hi" })
 rescue Fal::UnauthorizedError
   # handle invalid/missing FAL_KEY
 end
@@ -149,15 +150,121 @@ end
 Use `stream!` for SSE streaming from synchronous endpoints. It yields each chunk’s data Hash and returns a `Fal::Request` whose `response` contains the last chunk’s payload.
 
 ```ruby
-model_id = "fal-ai/flux/dev"
+endpoint_id = "fal-ai/flux/dev"
 
-last = Fal::Request.stream!(model_id: model_id, input: { prompt: "a cat" }) do |chunk|
+last = Fal::Request.stream!(endpoint_id: endpoint_id, input: { prompt: "a cat" }) do |chunk|
   # chunk is a Hash, e.g. { images: [...] }
   puts chunk
 end
 
 last.completed?    # => true/false
 last.response      # => last streamed data hash (e.g., { "response" => { ... } } or final payload)
+```
+
+### Pricing
+
+Use the Platform API to fetch per-endpoint pricing.
+
+Find pricing for a single endpoint:
+
+```ruby
+price = Fal::Price.find_by(endpoint_id: "fal-ai/flux/dev")
+price.unit_price  # => e.g., 0.025
+price.unit        # => e.g., "image"
+price.currency    # => e.g., "USD"
+```
+
+Iterate through all prices (auto-paginates):
+
+```ruby
+Fal::Price.each do |p|
+  puts "#{p.endpoint_id} => #{p.unit_price} #{p.currency} per #{p.unit}"
+end
+```
+
+Collect all prices as an array:
+
+```ruby
+prices = Fal::Price.all
+```
+
+### Estimate cost
+
+Compute a total cost estimate across endpoints using historical API price or unit price.
+
+Unit price (uses billing units like images/videos):
+
+```ruby
+estimate = Fal::PriceEstimate.create(
+  estimate_type: Fal::PriceEstimate::EstimateType::UNIT_PRICE,
+  endpoints: [
+    # You can pass unit_quantity directly
+    Fal::PriceEstimate::Endpoint.new(endpoint_id: "fal-ai/flux/dev", unit_quantity: 50),
+    # Or use call_quantity as a convenience alias for units
+    Fal::PriceEstimate::Endpoint.new(endpoint_id: "fal-ai/flux-pro", call_quantity: 25)
+  ]
+)
+
+estimate.estimate_type  # => "unit_price"
+estimate.total_cost     # => e.g., 1.88
+estimate.currency       # => "USD"
+```
+
+Historical API price (uses calls per endpoint):
+
+```ruby
+estimate = Fal::PriceEstimate.create(
+  estimate_type: Fal::PriceEstimate::EstimateType::HISTORICAL_API_PRICE,
+  endpoints: [
+    Fal::PriceEstimate::Endpoint.new(endpoint_id: "fal-ai/flux/dev", call_quantity: 100)
+  ]
+)
+```
+
+### Models
+
+List, search, and find models via the Models API.
+
+Find a model by endpoint ID:
+
+```ruby
+model = Fal::Model.find_by(endpoint_id: "fal-ai/flux/dev")
+model.endpoint_id   # => "fal-ai/flux/dev"
+model.display_name  # => e.g., "FLUX.1 [dev]"
+model.category      # => e.g., "text-to-image"
+model.status        # => "active" | "deprecated"
+model.tags          # => ["fast", "pro"]
+model.model_url     # => "https://fal.run/..."
+model.thumbnail_url # => "https://..."
+```
+
+Iterate or collect all models (auto-paginates):
+
+```ruby
+Fal::Model.each do |m|
+  puts m.endpoint_id
+end
+
+all_models = Fal::Model.all
+```
+
+Search with filters:
+
+```ruby
+results = Fal::Model.search(query: "text to image", status: "active")
+```
+
+Get a model’s price (memoized):
+
+```ruby
+price = model.price
+price.unit_price  # => e.g., 0.025
+```
+
+Run a request for a model (uses the model's `endpoint_id` as `endpoint_id`):
+
+```ruby
+request = model.run(input: { prompt: "a cat" })
 ```
 
 ### Development

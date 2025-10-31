@@ -40,3 +40,11 @@ Style/HashSyntax:
 Naming/FileName:
   Exclude:
     - "lib/fal.rb"
+
+Style/RedundantInitialize:
+  Exclude:
+    - "rbi/**/*.rbi"
+
+Naming/BlockForwarding:
+  Exclude:
+    - "rbi/**/*.rbi"

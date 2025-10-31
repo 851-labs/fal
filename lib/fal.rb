@@ -26,6 +26,7 @@ module Fal
   class Configuration
     DEFAULT_QUEUE_BASE = "https://queue.fal.run"
     DEFAULT_SYNC_BASE = "https://fal.run"
+    DEFAULT_API_BASE = "https://api.fal.ai/v1"
     DEFAULT_REQUEST_TIMEOUT = 120
 
     # API key used for authenticating with fal endpoints.
@@ -41,6 +42,10 @@ module Fal
     # @return [String]
     attr_accessor :sync_base
 
+    # Base URL for platform API endpoints (api.fal.ai/v1).
+    # @return [String]
+    attr_accessor :api_base
+
     # Timeout in seconds for opening and processing HTTP requests.
     # @return [Integer]
     attr_accessor :request_timeout
@@ -51,6 +56,7 @@ module Fal
       @api_key = ENV.fetch("FAL_KEY", nil)
       @queue_base = DEFAULT_QUEUE_BASE
       @sync_base = DEFAULT_SYNC_BASE
+      @api_base = DEFAULT_API_BASE
       @request_timeout = DEFAULT_REQUEST_TIMEOUT
     end
   end
@@ -98,3 +104,6 @@ require_relative "fal/client"
 require_relative "fal/request"
 require_relative "fal/stream"
 require_relative "fal/webhook_request"
+require_relative "fal/price"
+require_relative "fal/price_estimate"
+require_relative "fal/model"

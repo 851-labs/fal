@@ -18,7 +18,7 @@ class StreamTest < Minitest::Test
   end
 
   def test_stream_yields_chunks_and_returns_request_with_last_chunk
-    model_id = "fal-ai/flux/dev"
+    endpoint_id = "fal-ai/flux/dev"
 
     # Build SSE-style stream: data lines followed by blank line between events
     event1 = "data: {\"status\": \"IN_PROGRESS\", \"progress\": 0.1}\n\n"
@@ -28,7 +28,7 @@ class StreamTest < Minitest::Test
     client = FakeClient.new(chunks: [event1, event2, event3])
 
     yielded = []
-    request = Fal::Request.stream!(model_id: model_id, input: { prompt: "hi" }, client: client) do |chunk|
+    request = Fal::Request.stream!(endpoint_id: endpoint_id, input: { prompt: "hi" }, client: client) do |chunk|
       yielded << chunk
     end
 
